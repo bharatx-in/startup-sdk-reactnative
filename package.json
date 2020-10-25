@@ -1,5 +1,5 @@
 {
-  "name": "bharatx-reactnative-common",
+  "name": "@bharatx/bharatx-reactnative-common",
   "version": "1.0.1-alpha1",
   "description": "bharatx-reactnative-common",
   "main": "lib/commonjs/index",
