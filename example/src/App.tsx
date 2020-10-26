@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import BharatxReactnativeCommon from 'bharatx-reactnative-common';
+import BharatxReactnativeCommon from '@bharatx/bharatx-reactnative-common';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
