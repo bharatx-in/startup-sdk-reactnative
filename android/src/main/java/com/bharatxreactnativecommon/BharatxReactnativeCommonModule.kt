@@ -7,8 +7,6 @@ import com.facebook.react.modules.core.DeviceEventManagerModule.RCTDeviceEventEm
 import tech.bharatx.common.BharatXCommonUtilManager
 import tech.bharatx.common.CreditAccessManager
 import tech.bharatx.common.data_classes.CreditInfo
-import tech.bharatx.securityhelpers.SecurityStorageManager
-import tech.bharatx.securityhelpers.data_classes.BharatXTier
 import kotlin.math.roundToLong
 
 
@@ -43,7 +41,7 @@ class BharatxReactnativeCommonModule(reactContext: ReactApplicationContext) : Re
 
   @ReactMethod
   fun getUserCreditInfo(onComplete: Callback) {
-    CreditAccessManager.getUserCreditInfo(currentActivity!!, object: CreditAccessManager.OnCreditInfoCompleteListener {
+    CreditAccessManager.getUserCreditInfo(currentActivity!!, object : CreditAccessManager.OnCreditInfoCompleteListener {
       override fun onComplete(creditInfo: CreditInfo) {
         val creditTaken = creditInfo.creditTaken
         val creditLimit = creditInfo.creditLimit
@@ -54,10 +52,6 @@ class BharatxReactnativeCommonModule(reactContext: ReactApplicationContext) : Re
 
   @ReactMethod
   fun confirmTransactionWithUser(amountInPaise: Double) {
-    SecurityStorageManager.storePartnerId(currentActivity!!, "testPartnerId")
-    SecurityStorageManager.storePartnerApiKey(currentActivity!!, "testApiKey")
-    SecurityStorageManager.storePartnerTier(currentActivity!!, BharatXTier.BUSINESS)
-    var called = false
     BharatXCommonUtilManager.confirmTransactionWithUser(
       currentActivity!!,
       amountInPaise.roundToLong(),
