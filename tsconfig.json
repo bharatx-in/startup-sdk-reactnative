@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "bharatx-reactnative-common": ["./src/index"]
+      "@bharatx/bharatx-reactnative-common": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
