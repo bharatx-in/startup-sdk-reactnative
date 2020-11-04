@@ -78,4 +78,27 @@ class BharatxReactnativeCommonModule(reactContext: ReactApplicationContext) : Re
         }
       })
   }
+
+  @ReactMethod
+  fun showTransactionStatusDialog(isTransactionSuccessful: Boolean, onStatusDialogClose: Callback) {
+    BharatXCommonUtilManager.showTransactionStatusDialog(currentActivity!!, isTransactionSuccessful,
+      object : BharatXCommonUtilManager.TransactionStatusShowListener {
+        override fun onStatusDialogClose() {
+          onStatusDialogClose.invoke()
+        }
+      })
+  }
+
+  @ReactMethod
+  fun registerTransactionId(transactionId: String, successFailureCallback: Callback) {
+    CreditAccessManager.registerTransactionId((currentActivity as FragmentActivity?)!!, transactionId, object : CreditAccessManager.RegisterTransactionListener {
+      override fun onFailure() {
+        successFailureCallback.invoke(false)
+      }
+
+      override fun onRegistered() {
+        successFailureCallback.invoke(true)
+      }
+    })
+  }
 }

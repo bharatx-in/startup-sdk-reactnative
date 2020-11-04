@@ -8,6 +8,8 @@ type BharatxReactnativeCommonType = {
     onComplete: (creditTaken: number, creditLimit: number) => void
   ): void;
   confirmTransactionWithUser(amountInPaise: number): void;
+  showTransactionStatusDialog(isTransactionSuccessful: boolean, onStatusDialogClose: () => void): void;
+  registerTransactionId(transactionId: string, successFailureCallback: (isSuccess: boolean) => void): void;
 };
 
 const BharatxReactnativeCommon = NativeModules.BharatxReactnativeCommon as BharatxReactnativeCommonType;
@@ -49,6 +51,8 @@ const BharatxReactnativeCommonExport = {
       }
     );
   },
+  showTransactionStatusDialog: BharatxReactnativeCommon.showTransactionStatusDialog,
+  registerTransactionId: BharatxReactnativeCommon.registerTransactionId,
 };
 
 export default BharatxReactnativeCommonExport;
