@@ -6,11 +6,14 @@ export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    BharatxReactnativeCommon.registerTransactionId("TempTransaction", (isSuccess) => {
-      console.log(isSuccess);
-    });
+    BharatxReactnativeCommon.registerTransactionId(
+      'TempTransaction',
+      (isSuccess) => {
+        console.log(isSuccess);
+      }
+    );
     BharatxReactnativeCommon.showTransactionStatusDialog(true, () => {
-      console.log("Closed");
+      console.log('Closed');
     });
     BharatxReactnativeCommon.showBharatXProgressDialog();
     setTimeout(() => {
@@ -26,13 +29,13 @@ export default function App() {
           console.log('onUserConfirmedTransaction');
           let cur = true;
           const fun = () => {
-            console.log("Showing Transaction Status Dialog");
+            console.log('Showing Transaction Status Dialog');
             cur = !cur;
             BharatxReactnativeCommon.showTransactionStatusDialog(cur, () => {
-              console.log("Closing Transaction Status Dialog");
+              console.log('Closing Transaction Status Dialog');
               fun();
             });
-          }
+          };
           fun();
         },
         () => {
