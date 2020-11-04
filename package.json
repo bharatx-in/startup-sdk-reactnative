@@ -1,6 +1,6 @@
 {
   "name": "@bharatx/bharatx-reactnative-common",
-  "version": "1.0.1-release1",
+  "version": "1.0.1-release2",
   "description": "bharatx-reactnative-common",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
