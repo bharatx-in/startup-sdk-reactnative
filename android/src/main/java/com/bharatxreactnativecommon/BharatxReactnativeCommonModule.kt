@@ -101,4 +101,9 @@ class BharatxReactnativeCommonModule(reactContext: ReactApplicationContext) : Re
       }
     })
   }
+
+  @ReactMethod
+  fun registerUserId(userId: String) {
+    BharatXCommonUtilManager.registerUserId((currentActivity as FragmentActivity?)!!, userId)
+  }
 }

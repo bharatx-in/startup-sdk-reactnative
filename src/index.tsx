@@ -16,6 +16,7 @@ type BharatxReactnativeCommonType = {
     transactionId: string,
     successFailureCallback: (isSuccess: boolean) => void
   ): void;
+  registerUserId(userId: string): void;
 };
 
 const BharatxReactnativeCommon = NativeModules.BharatxReactnativeCommon as BharatxReactnativeCommonType;
@@ -60,6 +61,7 @@ const BharatxReactnativeCommonExport = {
   showTransactionStatusDialog:
     BharatxReactnativeCommon.showTransactionStatusDialog,
   registerTransactionId: BharatxReactnativeCommon.registerTransactionId,
+  registerUserId: BharatxReactnativeCommon.registerUserId,
 };
 
 export default BharatxReactnativeCommonExport;

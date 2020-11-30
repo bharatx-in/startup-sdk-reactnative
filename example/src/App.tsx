@@ -12,6 +12,7 @@ export default function App() {
         console.log(isSuccess);
       }
     );
+    BharatxReactnativeCommon.registerUserId('tempuser4');
     BharatxReactnativeCommon.showTransactionStatusDialog(true, () => {
       console.log('Closed');
     });
