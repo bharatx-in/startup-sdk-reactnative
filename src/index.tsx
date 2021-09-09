@@ -1,38 +1,69 @@
 import { NativeEventEmitter, NativeModules } from 'react-native';
 
 type BharatxReactnativeCommonType = {
+  registerUser(userDetails: {
+    phoneNumber?: string;
+    id?: string;
+    name?: string;
+    gender?: string;
+    dob?: string;
+    dobFormat?: string;
+    age?: number;
+    address?: string;
+    [key: string]: unknown;
+  }): void;
   registerCreditAccess(): void;
-  showBharatXProgressDialog(): void;
+  displayBharatXProgressDialog(): void;
   closeBharatXProgressDialog(): void;
   getUserCreditInfo(
-    onComplete: (creditTaken: number, creditLimit: number) => void
+    onComplete: (result: { creditTaken: number; creditLimit: number }) => void
   ): void;
-  confirmTransactionWithUser(amountInPaise: number): void;
-  showTransactionStatusDialog(
-    isTransactionSuccessful: boolean,
-    onStatusDialogClose: () => void
+  getUserCreditInfoFull(
+    onComplete: (result: {
+      creditTaken: number;
+      creditLimit: number;
+      dueAmount: number;
+      totalOutstandingAmount: number;
+      currentCycleDueDate: string;
+      repaymentLink: string;
+    }) => void
   ): void;
-  registerTransactionId(
-    transactionId: string,
-    successFailureCallback: (isSuccess: boolean) => void
+  confirmTransactionWithUser(
+    amountInPaise: number,
+    transactionId: string
   ): void;
-  registerUserId(userId: string): void;
 };
 
 const BharatxReactnativeCommon = NativeModules.BharatxReactnativeCommon as BharatxReactnativeCommonType;
+
+export enum TransactionFailureReason {
+  USER_CANCELLED = 'USER_CANCELLED',
+  DEVICE_FEATURE_MISSING = 'DEVICE_FEATURE_MISSING',
+  USER_PERMISSIONS_SETTINGS_RELOAD = 'USER_PERMISSIONS_SETTINGS_RELOAD',
+  AUTHENTICATION_FAILURE = 'AUTHENTICATION_FAILURE',
+  TRANSACTION_CONFIRMATION_FAILURE = 'TRANSACTION_CONFIRMATION_FAILURE',
+  UNKNOWN = 'UNKNOWN',
+}
+
 const BharatxReactnativeCommonExport = {
+  registerUser: BharatxReactnativeCommon.registerUser,
   registerCreditAccess: BharatxReactnativeCommon.registerCreditAccess,
-  showBharatXProgressDialog: BharatxReactnativeCommon.showBharatXProgressDialog,
+  displayBharatXProgressDialog:
+    BharatxReactnativeCommon.displayBharatXProgressDialog,
   closeBharatXProgressDialog:
     BharatxReactnativeCommon.closeBharatXProgressDialog,
   getUserCreditInfo: BharatxReactnativeCommon.getUserCreditInfo,
+  getUserCreditInfoFull: BharatxReactnativeCommon.getUserCreditInfoFull,
   confirmTransactionWithUser: (
     amountInPaise: number,
-    onUserConfirmedTransaction: () => void,
-    onUserAcceptedPrivacyPolicy: () => void,
-    onUserCancelledTransaction: () => void
+    transactionId: string,
+    onSuccess: () => void,
+    onFailure?: (transactionFailureReason: TransactionFailureReason) => void
   ) => {
-    BharatxReactnativeCommon.confirmTransactionWithUser(amountInPaise);
+    BharatxReactnativeCommon.confirmTransactionWithUser(
+      amountInPaise,
+      transactionId
+    );
     const eventEmitter = new NativeEventEmitter(
       NativeModules.BharatxReactnativeCommon
     );
@@ -40,17 +71,20 @@ const BharatxReactnativeCommonExport = {
       'confirmTransactionWithUser',
       (event) => {
         switch (event.value) {
-          case 'onUserConfirmedTransaction': {
-            onUserConfirmedTransaction();
+          case 'onSuccess': {
+            onSuccess();
             eventListener.remove();
             break;
           }
-          case 'onUserAcceptedPrivacyPolicy': {
-            onUserAcceptedPrivacyPolicy();
-            break;
-          }
-          case 'onUserCancelledTransaction': {
-            onUserCancelledTransaction();
+          case 'onFailure': {
+            if (onFailure) {
+              let reason = event.transactionFailureReason as string;
+              if (!(reason in TransactionFailureReason)) {
+                reason = TransactionFailureReason.UNKNOWN;
+              }
+
+              onFailure(reason as TransactionFailureReason);
+            }
             eventListener.remove();
             break;
           }
@@ -58,10 +92,6 @@ const BharatxReactnativeCommonExport = {
       }
     );
   },
-  showTransactionStatusDialog:
-    BharatxReactnativeCommon.showTransactionStatusDialog,
-  registerTransactionId: BharatxReactnativeCommon.registerTransactionId,
-  registerUserId: BharatxReactnativeCommon.registerUserId,
 };
 
 export default BharatxReactnativeCommonExport;
