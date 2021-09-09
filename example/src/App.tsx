@@ -6,47 +6,24 @@ export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    BharatxReactnativeCommon.registerTransactionId(
-      'TempTransaction',
-      (isSuccess) => {
-        console.log(isSuccess);
-      }
-    );
-    BharatxReactnativeCommon.registerUserId('tempuser4');
-    BharatxReactnativeCommon.showTransactionStatusDialog(true, () => {
-      console.log('Closed');
+    BharatxReactnativeCommon.registerUser({
+      phoneNumber: '9876543210',
+      id: 'temp-id',
+      name: 'Jon Snow',
+      gender: 'Male',
+      dob: '2016-02-05',
+      dobFormat: 'YYYY-MM-DD',
+      age: 20,
+      address: '20, Tech Street, Bengaluru',
+      customKey1: 'customValue1',
+      customKey2: 'customValue2',
     });
-    BharatxReactnativeCommon.showBharatXProgressDialog();
-    setTimeout(() => {
-      BharatxReactnativeCommon.closeBharatXProgressDialog();
-      BharatxReactnativeCommon.registerCreditAccess();
-      BharatxReactnativeCommon.getUserCreditInfo((creditTaken, creditLimit) => {
+    BharatxReactnativeCommon.getUserCreditInfo(
+      ({ creditTaken, creditLimit }) => {
         console.log(creditLimit);
         console.log(creditTaken);
-      });
-      BharatxReactnativeCommon.confirmTransactionWithUser(
-        10000,
-        () => {
-          console.log('onUserConfirmedTransaction');
-          let cur = true;
-          const fun = () => {
-            console.log('Showing Transaction Status Dialog');
-            cur = !cur;
-            BharatxReactnativeCommon.showTransactionStatusDialog(cur, () => {
-              console.log('Closing Transaction Status Dialog');
-              fun();
-            });
-          };
-          fun();
-        },
-        () => {
-          console.log('onUserAcceptedPrivacyPolicy');
-        },
-        () => {
-          console.log('onUserCancelledTransaction');
-        }
-      );
-    }, 5000);
+      }
+    );
     setResult(2);
   }, []);
 
