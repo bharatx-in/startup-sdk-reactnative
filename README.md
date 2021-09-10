@@ -1,3 +1,3 @@
-# startup-sdk
+# startup-sdk-reactnative
 
-startup-sdk
+startup-sdk-reactnative

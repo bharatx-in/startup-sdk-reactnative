@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@bharatx/startup-sdk": ["./src/index"]
+      "@bharatx/startup-sdk-reactnative": ["./src/index"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

@@ -1,6 +1,6 @@
 {
-  "name": "startup-sdk-example",
-  "description": "Example app for startup-sdk",
+  "name": "startup-sdk-reactnative-example",
+  "description": "Example app for startup-sdk-reactnative",
   "version": "0.0.1",
   "private": true,
   "scripts": {
