@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import BharatxReactnativeCommon from '@bharatx/startup-sdk';
+import BharatxReactnativeCommon from '@bharatx/startup-sdk-reactnative';
 
 export default function App() {
   React.useEffect(() => {
