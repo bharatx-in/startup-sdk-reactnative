@@ -152,9 +152,17 @@ android {
     }
     buildTypes {
         debug {
+            manifestPlaceholders = [
+                bharatx_partner_id: "testPartnerId",
+                bharatx_api_key: "testApiKey"
+            ]
             signingConfig signingConfigs.debug
         }
         release {
+            manifestPlaceholders = [
+                bharatx_partner_id: "testPartnerId",
+                bharatx_api_key: "testApiKey"
+            ]
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
             signingConfig signingConfigs.debug

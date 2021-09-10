@@ -1,3 +1,3 @@
-# bharatx-reactnative-common
+# startup-sdk
 
-bharatx-reactnative-common
+startup-sdk
