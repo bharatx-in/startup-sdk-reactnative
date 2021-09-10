@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import BharatxReactnativeCommon from '@bharatx/bharatx-reactnative-common';
+import { StyleSheet, View, Button } from 'react-native';
+import BharatxReactnativeCommon from '@bharatx/startup-sdk';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
   React.useEffect(() => {
     BharatxReactnativeCommon.registerUser({
       phoneNumber: '9876543210',
@@ -24,12 +22,25 @@ export default function App() {
         console.log(creditTaken);
       }
     );
-    setResult(2);
+    BharatxReactnativeCommon.displayBharatXProgressDialog();
+    setTimeout(() => {
+      BharatxReactnativeCommon.closeBharatXProgressDialog();
+      BharatxReactnativeCommon.confirmTransactionWithUser(
+        10000,
+        'test-txn',
+        () => {
+          console.log('Success');
+        },
+        (reason) => {
+          console.log('Failure due to: ' + reason);
+        }
+      );
+    }, 5000);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Button title="hello" onPress={() => {}} />
     </View>
   );
 }

@@ -1,6 +1,6 @@
 {
-  "name": "bharatx-reactnative-common-example",
-  "description": "Example app for bharatx-reactnative-common",
+  "name": "startup-sdk-example",
+  "description": "Example app for startup-sdk",
   "version": "0.0.1",
   "private": true,
   "scripts": {

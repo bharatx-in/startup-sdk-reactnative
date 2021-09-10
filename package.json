@@ -1,7 +1,7 @@
 {
-  "name": "@bharatx/bharatx-reactnative-common",
+  "name": "@bharatx/startup-sdk",
   "version": "3.1.0-release1",
-  "description": "bharatx-reactnative-common",
+  "description": "React Native port of BharatX's startup SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -32,13 +32,13 @@
     "react-native",
     "android"
   ],
-  "repository": "https://github.com/bharatx-in/bharatx-reactnative-common",
+  "repository": "https://github.com/bharatx-in/startup-sdk-reactnative",
   "author": "BharatX <sid@bharatx.tech> (https://bharatx.tech)",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/bharatx-in/bharatx-reactnative-common/issues"
+    "url": "https://github.com/bharatx-in/startup-sdk-reactnative/issues"
   },
-  "homepage": "https://github.com/bharatx-in/bharatx-reactnative-common#readme",
+  "homepage": "https://github.com/bharatx-in/startup-sdk-reactnative#readme",
   "devDependencies": {
     "@commitlint/config-conventional": "^8.3.4",
     "@react-native-community/bob": "^0.16.2",
