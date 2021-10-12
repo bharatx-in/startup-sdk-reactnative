@@ -42,28 +42,23 @@ class BharatxReactnativeCommonModule(reactContext: ReactApplicationContext) : Re
           bharatXUserManager.id(value as String)
         }
         "name" -> {
-          bharatXUserManager.name(value as String)
+          bharatXUserManager.name(value as String?)
         }
         "gender" -> {
-          bharatXUserManager.gender(value as String)
+          bharatXUserManager.gender(value as String?)
         }
         "dob" -> {
-          val dobFormat: String? = userDetailsMap["dobFormat"] as String?
-          if(dobFormat.isNullOrBlank()) {
-            bharatXUserManager.dob(value as String)
-          } else {
-            bharatXUserManager.dob(value as String, dobFormat)
-          }
+          bharatXUserManager.dob(value as String?, userDetailsMap["dobFormat"] as String?)
         }
         "dobFormat" -> {}
         "age" -> {
-          bharatXUserManager.age((value as Double).toInt())
+          bharatXUserManager.age((value as Double?)?.toInt())
         }
         "address" -> {
-          bharatXUserManager.address(value as String)
+          bharatXUserManager.address(value as String?)
         }
         else -> {
-          if(value is String) {
+          if(value is String?) {
             bharatXUserManager.prop(key, value)
           }
         }
