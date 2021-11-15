@@ -1,6 +1,6 @@
 {
   "name": "@bharatx/startup-sdk-reactnative",
-  "version": "3.1.2-release1",
+  "version": "3.1.4-release1",
   "description": "React Native port of BharatX's startup SDK",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
